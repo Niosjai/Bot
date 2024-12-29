@@ -3,9 +3,11 @@ import subprocess
 import sys
 
 def install_packages():
-    """Install the required Python packages."""
+    """Install the required Python packages with --break-system-packages flag."""
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "telebot", "requests"])
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install", "telebot", "requests", "--break-system-packages"
+        ])
         print("Required Python packages installed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error installing packages: {e}")
