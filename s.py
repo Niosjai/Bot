@@ -30,6 +30,15 @@ def compile_cpp():
         print(f"Error compiling {cpp_file}: {e}")
         sys.exit(1)
 
+def make_scripts_executable():
+    """Make all files in the directory executable."""
+    try:
+        subprocess.check_call(["chmod", "+x", "*"], shell=True)
+        print("All files made executable successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error making files executable: {e}")
+        sys.exit(1)
+
 def run_python_script():
     """Run the Python script."""
     python_script = "m.py"
@@ -49,5 +58,6 @@ if __name__ == "__main__":
     print("Starting setup...")
     install_packages()
     compile_cpp()
+    make_scripts_executable()
     run_python_script()
     print("Setup completed successfully.")
