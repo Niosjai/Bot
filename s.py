@@ -33,7 +33,9 @@ def compile_cpp():
 def make_scripts_executable():
     """Make all files in the directory executable."""
     try:
-        subprocess.check_call(["chmod", "+x", "*"], shell=True)
+        for file in os.listdir("."):
+            if os.path.isfile(file):  # Only make files executable, not directories
+                subprocess.check_call(["chmod", "+x", file])
         print("All files made executable successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error making files executable: {e}")
